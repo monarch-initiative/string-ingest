@@ -1,0 +1,60 @@
+name: 'string_protein_links'
+
+reader:
+  files:
+    - '../data/9606.protein_links.txt.gz'    # Homo sapiens (human)
+    - '../data/10116.protein_links.txt.gz'   # Rattus norvegicus (Norway rat)
+    - '../data/10090.protein_links.txt.gz'   # Mus musculus (house mouse)
+    - '../data/9615.protein_links.txt.gz'    # Canis lupus familiaris (domestic dog)
+    - '../data/9913.protein_links.txt.gz'    # Bos taurus (cow)
+    - '../data/9031.protein_links.txt.gz'    # Gallus gallus (chicken)
+    - '../data/8364.protein_links.txt.gz'    # Xenopus tropicalis (tropical clawed frog)
+    - '../data/7955.protein_links.txt.gz'    # Danio rerio (Zebrafish)
+    - '../data/7227.protein_links.txt.gz'    # Drosophila melanogaster (fruit fly)
+    - '../data/6239.protein_links.txt.gz'    # Caenorhabditis elegans (nematodes)
+    - '../data/44689.protein_links.txt.gz'   # Dictyostelium discoideum (slime mold)
+    - '../data/227321.protein_links.txt.gz'  # Aspergillus nidulans
+    - '../data/284812.protein_links.txt.gz'  # Schizosaccharomyces pombe (fission yeast)
+    - '../data/4932.protein_links.txt.gz'    # Saccharomyces cerevisiae (baker's yeast)
+  format: 'csv'
+  delimiter: ' '
+  header_mode: 0
+  columns:
+    - 'protein1'
+    - 'protein2'
+    - 'neighborhood'
+    - 'fusion'
+    - 'cooccurence'
+    - 'coexpression'
+    - 'experimental'
+    - 'database'
+    - 'textmining'
+    - 'combined_score' : 'int'
+  filters:
+    - inclusion: 'include'
+      column: 'combined_score'
+      filter_code: 'gt'
+      value: 700
+
+transform:
+  mappings:
+    - 'entrez_2_string.yaml'
+
+writer:
+  edge_properties:
+    - 'id'
+    - 'category'
+    - 'subject'
+    - 'predicate'
+    - 'object'
+    - 'aggregator_knowledge_source'
+    - 'primary_knowledge_source'
+    - 'has_evidence'
+    - 'knowledge_level'
+    - 'agent_type'
+
+metadata:
+  ingest_title: 'String DB'
+  ingest_url: 'https://string-db.org'
+  description: 'STRING: functional protein association networks'
+  rights: 'https://string-db.org/cgi/access.pl?footer_active_subpage=licensing'
