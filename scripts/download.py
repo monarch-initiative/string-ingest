@@ -1,10 +1,25 @@
 #!/usr/bin/env python3
 """Download source data files specified in download.yaml."""
 
+import shutil
 import urllib.request
 from pathlib import Path
 
 import yaml
+
+# Browser-like User-Agent to avoid 403 blocks from some servers
+USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+)
+
+
+def download_file(url: str, local_path: Path) -> None:
+    """Download a file with browser-like headers to avoid bot blocking."""
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(request) as response:
+        with open(local_path, "wb") as out_file:
+            shutil.copyfileobj(response, out_file)
 
 
 def download_files():
@@ -30,7 +45,7 @@ def download_files():
             continue
 
         print(f"Downloading {url} -> {local_name}")
-        urllib.request.urlretrieve(url, local_path)
+        download_file(url, local_path)
         print(f"  Downloaded {local_path.stat().st_size:,} bytes")
 
 
