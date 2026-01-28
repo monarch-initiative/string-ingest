@@ -12,7 +12,7 @@ on:
         type: string
 
 env:
-  TRANSFORMS: "gene gene_to_phenotype"
+  TRANSFORMS: "protein_links"
 
 jobs:
   release:
@@ -62,11 +62,10 @@ jobs:
           tag_name: ${{ steps.tag.outputs.tag }}
           name: Release ${{ steps.tag.outputs.tag }}
           body: |
-            Automated release of PomBase ingest data.
+            Automated release of STRING DB ingest data.
 
             ## Transforms included
-            - gene (S. pombe gene nodes)
-            - gene_to_phenotype (gene to phenotype associations)
+            - protein_links (protein-protein interaction edges from 14 species)
           draft: false
           prerelease: false
           files: |
