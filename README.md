@@ -1,4 +1,4 @@
-# string-ingest
+# STRING
 
 [STRING is a database of known and predicted protein-protein interactions](https://string-db.org/cgi/about). The interactions include direct (physical) and indirect (functional) associations; they stem from computational prediction, from knowledge transfer between organisms, and from interactions aggregated from other (primary) databases.
 
@@ -37,45 +37,6 @@ A separate Entrez to String identifier mapping file is not available for _Rattus
     - object (gene.id)
     - aggregating_knowledge_source (`["infores:monarchinitiative"]`)
     - primary_knowledge_source (`infores:string`)
-
-## Setup
-
-```bash
-just setup
-```
-
-## Usage
-
-### Download source data
-
-```bash
-just download
-```
-
-### Run transforms
-
-```bash
-# Run all transforms
-just transform-all
-
-# Run specific transform
-just transform <transform_name>
-```
-
-### Run tests
-
-```bash
-just test
-```
-
-## Data Sources
-
-- STRING DB protein links (14 species)
-- STRING DB Entrez to protein ID mappings
-
-## Output
-
-- `string_protein_links_edges.tsv` - Pairwise gene-to-gene interactions
 
 ## Citation
 
