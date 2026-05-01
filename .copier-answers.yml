@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier
+_commit: 218fa7f
+_src_path: gh:monarch-initiative/koza-ingest-template
+copyright_year: '2025'
+email: info@monarchinitiative.org
+full_name: Monarch Initiative
+github_handle: monarch-initiative
+github_org: monarch-initiative
+license: BSD-3-Clause
+project_description: STRING DB protein links ingest
+project_name: string-ingest
+project_slug: string_ingest
