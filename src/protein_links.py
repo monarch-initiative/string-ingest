@@ -1,4 +1,3 @@
-import uuid
 from typing import Dict, List
 
 import koza
@@ -72,7 +71,6 @@ def transform_record(koza_transform, row):
                 gene_id_b = 'NCBIGene:' + gid_b
 
                 association = PairwiseGeneToGeneInteraction(
-                    id="uuid:" + str(uuid.uuid1()),
                     subject=gene_id_a,
                     object=gene_id_b,
                     predicate="biolink:interacts_with",
